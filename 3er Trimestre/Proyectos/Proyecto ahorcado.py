@@ -6,6 +6,8 @@ lista_partida=[]
 lista_ahorcado=[]
 palabracorrecta=[]
 lista_fin=["A","H","O","R","C","A","D","O"]
+lista_aciertos=[]
+lista_errores=[]
 fin=0
 x=0
 pos=0
@@ -32,6 +34,7 @@ while lista_ahorcado!=lista_fin and lista_partida!=palabracorrecta:
             acierto=acierto+1
             veces=veces+1
             fallo=0
+            lista_aciertos.append(letras)
         if palabra.count(letras)<1:
             fallo=fallo+1
         if x!=acierto and fallo==1:
@@ -39,6 +42,7 @@ while lista_ahorcado!=lista_fin and lista_partida!=palabracorrecta:
                 if veces!=len(palabra):
                     lista_ahorcado.append(lista_fin[pos])
                     pos=pos+1
+                    lista_errores.append(letras)
                     print(lista_ahorcado)
                     if len(lista_ahorcado)==8:
                          fin=1
@@ -46,6 +50,8 @@ while lista_ahorcado!=lista_fin and lista_partida!=palabracorrecta:
         fin=1
     print(lista_partida)
     if fin==1:
+        print("El número de aciertos ha sido de",len(lista_aciertos))
+        print("El número de errores ha sido de",len(lista_errores))
         repe=input("¿Quieres hacer una nueva partida? si para si, no para no:")
         if repe=="si":
             fin=0
@@ -64,6 +70,8 @@ while lista_ahorcado!=lista_fin and lista_partida!=palabracorrecta:
             lista_ahorcado=[]
             lista_partida=[]
             palabracorrecta=[]
+            lista_aciertos=[]
+            lista_errores=[]
             for cont in palabra:
                 palabracorrecta.append(cont)
             for cont in range(len(palabra)):
