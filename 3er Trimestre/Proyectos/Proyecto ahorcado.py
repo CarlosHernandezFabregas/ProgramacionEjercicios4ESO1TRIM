@@ -21,6 +21,8 @@ for cont in range(len(palabra)):
 print(lista_partida)
 while lista_ahorcado!=lista_fin and lista_partida!=palabracorrecta:
     letras=input("Introduce una letra que se introduzca en la palabra:")
+    x=1
+    fallo=0
     acierto=0
     for cont in range(len(palabra)):
         if letras==palabra[cont]:
@@ -29,9 +31,12 @@ while lista_ahorcado!=lista_fin and lista_partida!=palabracorrecta:
             lista_partida.insert(cont,letras)
             acierto=acierto+1
             veces=veces+1
-    if x!=acierto:
+            fallo=0
+        if palabra.count(letras)<1:
+            fallo=fallo+1
+        if x!=acierto and fallo==1:
                 fallo=fallo+1
-                if veces!=7:
+                if veces!=len(palabra):
                     lista_ahorcado.append(lista_fin[pos])
                     pos=pos+1
                     print(lista_ahorcado)
@@ -49,7 +54,9 @@ while lista_ahorcado!=lista_fin and lista_partida!=palabracorrecta:
             fallo=0
             pos=0
             lista_palabrasecreta.pop(num)
-            lista_palabrasecreta.insert(num,input("Introduce la nueva palabra que quieres que se añada a la lista:"))
+            preg=input("¿Deseas introducir una nueva palabra? si para si, no para no")
+            if preg=="si":
+                lista_palabrasecreta.insert(num,input("Introduce la nueva palabra que quieres que se añada a la lista:"))
             num=random.randint(0,9)
             palabra=lista_palabrasecreta[num]
             cont=0
